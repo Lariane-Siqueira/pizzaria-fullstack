@@ -13,16 +13,16 @@ export default function Hero() {
             is better <br /> with a&nbsp;{" "}
             <span className="text-primary">Pizza</span>
           </h1>
-          <p className="my-6 text-gray-500 ">
+          <p className="my-6 text-gray-500">
             Pizza is the missing piece that makes every day complete, a simple
             yet delicious joy in life
           </p>
           <div className="flex gap-4 text-sm">
-            <button className="bg-primary uppercase flex items-center gap-2 text-white rounded">
+            <button className="bg-primary uppercase flex items-center gap-2 text-white py-2 px-4 rounded">
               Order now
-              <Right />
+              <Right/>
             </button>
-            <button className="flex text-gray-600 font-semibold items-center">
+            <button className="flex border-0 text-gray-600 font-semibold items-center py-2">
               Learn more
               <Right />
             </button>
