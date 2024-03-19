@@ -6,7 +6,14 @@ import Link from "next/link";
 
 export default function Header() {
   const session = useSession(); // Verifica se usuário está ou não logado
-  const status = session.status;
+  const status = session?.status;
+  const userData = session.data?.user; // Acessa os dados do usuário, se tiver
+  let userName = userData?.name || userData?.email; // Pega o nome ou o email de dentro dos dados fornecidos, se tiver
+  if (userName && userName.includes(" ")) {
+    // Se tiver um username, e o username tiver um espaço entra no if. Se tirar o primeiro "userName" pode ocorrer erro de retornar como indefinido
+    userName = userName.split(" ")[0]; // Verifica se o nome possui espaço, se possuir, pega somente o primeiro
+  }
+
   return (
     <>
       <header className="flex items-center justify-between">
@@ -22,12 +29,17 @@ export default function Header() {
         </nav>
         <nav className="flex items-center gap-4 text-gray-500">
           {status === "authenticated" && ( //Se está logado mostra a opção do Logout, senão de Login
-            <button
-              onClick={() => signOut()}
-              className="bg-primary rounded text-white px-7 py-2"
-            >
-              Logout
-            </button>
+            <>
+              <Link href={"/profile"} className="whitespace-nowrap">
+                Olá, {userName}
+              </Link>
+              <button
+                onClick={() => signOut()}
+                className="bg-primary rounded text-white px-7 py-2"
+              >
+                Sair
+              </button>
+            </>
           )}
           {status == "unauthenticated" && (
             <>
